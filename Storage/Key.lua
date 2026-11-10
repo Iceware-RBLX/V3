@@ -25,20 +25,20 @@ return function(script_id)
         loading:SetMessage("Verifying files")
         loading:SetDescription("")
         task.wait(0.4)
-        if not isfolder("iceware") then makefolder("iceware") end
-        if not isfolder("iceware/Key") then makefolder("iceware/Key") end
+        if not isfolder("iw") then makefolder("iw") end
+        if not isfolder("iw/Key") then makefolder("iw/Key") end
 
         loading:SetCurrentStep(3)
         loading:SetMessage("Checking saved key")
         task.wait(0.4)
-        if isfile("iceware/Key/key.json") then
-            local ok, data = pcall(function() return game:GetService("HttpService"):JSONDecode(readfile("iceware/Key/key.json")) end)
+        if isfile("iw/Key/key.json") then
+            local ok, data = pcall(function() return game:GetService("HttpService"):JSONDecode(readfile("iw/Key/key.json")) end)
             if ok and data.Key and sdk:checkKey(data.Key).status == "VALID" then
                 loading:Destroy()
                 library:Notify({ Title = "iceware", Description = "Valid key! Loading script, don't touch anything...", Time = 10 })
                 return sdk:loadScript(data.Key)
             end
-            delfile("iceware/Key/key.json")
+            delfile("iw/Key/key.json")
             library:Notify({ Title = "iceware", Description = "Your saved key expired, get a new key to continue using iceware!", Time = 5 })
         end
 
@@ -80,7 +80,7 @@ return function(script_id)
             end
 
             if remember_me.Value then
-                writefile("iceware/Key/key.json", game:GetService("HttpService"):JSONEncode({ Key = key }))
+                writefile("iw/Key/key.json", game:GetService("HttpService"):JSONEncode({ Key = key }))
             end
 
             library:Notify({ Title = "iceware", Description = "Valid key! Loading script, don't touch anything...", Time = 10 })
