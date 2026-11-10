@@ -16,17 +16,12 @@ cloneref(game:GetService("Players")).LocalPlayer.Idled:Connect(function()
     cloneref(game:GetService("VirtualUser")):ClickButton2(Vector2.new())
 end)
 
-if isfile("iceware/Version.txt") and readfile("iceware/Version.txt") ~= "V3.0.0" then
-    delfolder("iceware")
-end
-
 local shared = {
-    version = "V3.0.0",
     folders = {
-        main = "iceware",
-        games = "iceware/Games",
-        key = "iceware/Key",
-        assets = "iceware/Assets",
+        main = "iw",
+        games = "iw/Games",
+        key = "iw/Key",
+        assets = "iw/Assets",
     };
 }
 
@@ -36,21 +31,20 @@ for _, folder in shared.folders do
     end
 end
 
-writefile("iceware/Discord.txt", "https://discord.gg/sn2Etx6M8G")
-writefile("iceware/Version.txt", shared.version)
+writefile("iw/Discord.txt", "https://discord.gg/sn2Etx6M8G")
 
 local games = {
-    [{4793836769}] = "", -- Midnight Chasers
-    [{1202096104}] = "", -- Driving Empire
-    [{605887098}] = "", -- Car Dealership Tycoon
-    [{10173311467}] = "", -- Ghost Drivers
-    [{371263894}] = "", -- Greenville
+    [{4793836769}] = "92692403819809795006", -- Midnight Chasers
+    [{1202096104}] = "25792694393002956600", -- Driving Empire
+    [{605887098}] = "12515916467417583288", -- Car Dealership Tycoon
+    [{10173311467}] = "81982634389344722755", -- Ghost Drivers
+    [{371263894}] = "13415668321463585599", -- Greenville
     [{2851381018}] = "00105413212555076990", -- Taxi Boss
-    [{7094518649}] = "", -- Restaurant Tycoon 3
-    [{6504986360}] = "", -- Bubble Gum Simulator Infinity
-    [{6751447237}] = "", -- Car Zone
-    [{9979684281}] = "", -- Mechanic Legends
-    [{66654135}] = "", -- Murder Mystery 2
+    [{7094518649}] = "10634400818335330310", -- Restaurant Tycoon 3
+    [{6504986360}] = "25527719178032843308", -- Bubble Gum Simulator Infinity
+    [{6751447237}] = "43978668653069666766", -- Car Zone
+    [{9979684281}] = "70091420735372637001", -- Mechanic Legends
+    [{66654135}] = "51001665699117764808", -- Murder Mystery 2
 }
 
 for ids, id in games do
