@@ -12,9 +12,11 @@ cloneref = cloneref or function(x) return x end
 
 repeat task.wait() until game:IsLoaded() and cloneref(game:GetService("ContentProvider")).RequestQueueSize <= 10
 
-cloneref(game:GetService("Players")).LocalPlayer.Idled:Connect(function()
-    cloneref(game:GetService("VirtualUser")):ClickButton2(Vector2.new())
-end)
+if game.PlaceId ~= 137228775845999 then
+    cloneref(game:GetService("Players")).LocalPlayer.Idled:Connect(function()
+        cloneref(game:GetService("VirtualUser")):ClickButton2(Vector2.new())
+    end)
+end
 
 local shared = {
     folders = {
