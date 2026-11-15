@@ -17,7 +17,6 @@ if game.PlaceId ~= 137228775845999 then
         cloneref(game:GetService("VirtualUser")):ClickButton2(Vector2.new())
     end)
 end
-print("loader init")
 local shared = {
     folders = {
         main = "iw",
@@ -32,7 +31,6 @@ for _, folder in shared.folders do
         makefolder(folder)
     end
 end
-print("loader folders")
 writefile("iw/Discord.txt", "https://discord.gg/sn2Etx6M8G")
 
 local games = {
@@ -52,11 +50,11 @@ local games = {
 for ids, id in games do
     if table.find(ids, game.GameId) then
         local ok, err = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Iceware-RBLX/V3/refs/heads/main/Storage/Key.lua"))()(id)
-            print(id)
+            loadstring(game:HttpGet("https://gitlab.com/nxtcapi/iceware/-/raw/main/storage/key.lua"))()(id)
+            --print(id)
         end)
         if not ok then
-            --warn("Failed 2 load" .. err)
+            --warn(err)
         end
     end
 end
