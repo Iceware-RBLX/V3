@@ -7,8 +7,10 @@ return function(script_id)
     local theme_manager = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/addons/ThemeManager.lua"))()
     local sdk = loadstring(game:HttpGet("https://sdk.luaprot.net/"))()
 
+
     sdk.scriptId = script_id
     getgenv().Library = library
+    print("key depencies")
 
     theme_manager:SetLibrary(library)
     theme_manager:SetDefaultTheme({ FontColor = "b8b6b9", MainColor = "222226", AccentColor = "a9a9a9", BackgroundColor = "101013", OutlineColor = "28282c" })
@@ -44,7 +46,7 @@ return function(script_id)
 
         loading:Destroy()
     end
-
+    print("key window")
     local window = library:CreateWindow({
         Title = "iceware",
         Footer = "Key System",
