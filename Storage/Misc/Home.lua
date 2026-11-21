@@ -1,4 +1,4 @@
-return function(library, tab, license)
+return function(library, tab, license, changelog)
     cloneref = cloneref or function(x) return x end
 
     local players = cloneref(game:GetService("Players"))
@@ -98,7 +98,7 @@ return function(library, tab, license)
 
     local log = tab:AddRightGroupbox("Changelog", "scroll-text", true, false, true)
     log.Container:FindFirstChildOfClass("UIListLayout").Padding = UDim.new(0, 2)
-    for _, entry in {
+    for _, entry in changelog or {
         { "Update 2", "67", { "Hello", "inline", "stuff" } },
         { "Update 1", "Release", { "Meow" } },
     } do
