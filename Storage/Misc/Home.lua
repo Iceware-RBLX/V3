@@ -63,12 +63,6 @@ return function(library, tab, license)
         library:Notify({ Title = "Notification", Description = "Copied Job ID to clipboard", Time = 3 })
     end)
 
-    local friends = tab:AddLeftGroupbox("Friends", "users", true, false, true)
-    local in_server = friends:AddLabel("In Server: ...")
-    local online = friends:AddLabel("Online: ...")
-    local offline = friends:AddLabel("Offline: ...")
-    local total = friends:AddLabel("Total: ...")
-
     local client = tab:AddLeftGroupbox("Client", "monitor", true, false, true)
     client:AddLabel("Executor: " .. (identifyexecutor and identifyexecutor() or "Unknown"), true)
     local status = client:AddLabel("Status: " .. (low_end and "Limited" or "Supported"))
@@ -150,42 +144,6 @@ return function(library, tab, license)
             end
 
             task.wait(1)
-        end
-    end)
-
-    task.spawn(function()
-        local all
-        while not library.Unloaded do
-            if not all then
-                pcall(function()
-                    local pages = players:GetFriendsAsync(lp.UserId)
-                    all = #pages:GetCurrentPage()
-                    while not pages.IsFinished do
-                        pages:AdvanceToNextPageAsync()
-                        all += #pages:GetCurrentPage()
-                    end
-                end)
-            end
-
-            local here = 0
-            for _, plr in players:GetPlayers() do
-                local ok, friend = pcall(function()
-                    return plr ~= lp and lp:IsFriendsWith(plr.UserId)
-                end)
-                if ok and friend then
-                    here += 1
-                end
-            end
-
-            local ok, list = pcall(function()
-                return lp:GetFriendsOnline(200)
-            end)
-            in_server:SetText("In Server: " .. here)
-            online:SetText("Online: " .. (ok and #list or "Unavailable"))
-            total:SetText("Total: " .. (all or "Unavailable"))
-            offline:SetText("Offline: " .. (ok and all and math.max(all - #list, 0) or "Unavailable"))
-
-            task.wait(30)
         end
     end)
 end
